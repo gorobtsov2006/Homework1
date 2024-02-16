@@ -30,6 +30,14 @@ namespace Homework1
             int c = int.Parse(Console.ReadLine());
             Console.WriteLine($"Количество корней данного уравнения = {CountRoots(a, b, c)}");
             Console.WriteLine();
+
+            //Создать функцию, которая возвращает минимум из двух переданных вещественных чисел
+            Console.WriteLine("Задание 4");
+            Console.WriteLine("Введите 2 вещественных числа");
+            double num1 = double.Parse(Console.ReadLine());
+            double num2 = double.Parse(Console.ReadLine());
+            Console.WriteLine($"Минимум из этих двух чисел = {Min(num1, num2)}");
+            Console.WriteLine();
         }
 
         /** <summary> Обнуление разряда десятков </summary>*/
@@ -72,5 +80,8 @@ namespace Homework1
             else
                 return 0;
         }
+
+        /** <summary> Минимум из двух переданных вещественных чисел </summary>*/
+        static double Min(double a, double b) => a < b ? a : b;
     }
 }
