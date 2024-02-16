@@ -46,6 +46,20 @@ namespace Homework1
             int second = int.Parse(Console.ReadLine());
             Console.WriteLine($"Произведение всех чётных целых чисел от A до B включительно = {ProductEven(first, second)}");
             Console.WriteLine();
+
+            /*Дано целое число K и набор ненулевых целых чисел; признак его завершения — число 0. Вычислить количество
+           чисел в наборе, меньших K, а также количество чисел, делящихся на K нацело*/
+            Console.WriteLine("Задание 6");
+            int less = 0;
+            int div = 0;
+            Console.WriteLine("Введите целое число K (K не равно 0)");
+            int k = int.Parse(Console.ReadLine());
+            Console.WriteLine("Вводите набор чисел, концом вашего набора будет число 0");
+            int numOfSet = int.Parse(Console.ReadLine());
+            CountLessAndDiv(ref k, ref numOfSet, out less, out div);
+            Console.WriteLine($"Количество чисел в наборе меньших {k} = {less}");
+            Console.WriteLine($"Количество чисел, делящихся на {k} нацело = {div}");
+            Console.WriteLine();
         }
 
         /** <summary> Обнуление разряда десятков </summary>*/
@@ -55,6 +69,7 @@ namespace Homework1
             {
                 throw new Exception("Число не трёхзначое");
             }
+            
             return a - ((a / 10) % 10) * 10;
         }
 
@@ -93,7 +108,6 @@ namespace Homework1
         static double Min(double a, double b) => a < b ? a : b;
 
         /** <summary> Вычисление произведения всех чётных целых чисел от A до B включительно </summary>*/
-
         static double ProductEven(int a, int b)
         {
             if (a >= b)
@@ -108,6 +122,29 @@ namespace Homework1
                 prod *= i;
             }
             return prod;
+        }
+
+        /** <summary> Вычисление количества чисел в наборе, меньших K, а также количества чисел, делящихся на K нацело </summary>*/
+        static void CountLessAndDiv(ref int k, ref int num, out int less, out int div)
+        {
+            if (k == 0)
+            {
+                throw new ArgumentException("K не должно быть равно нулю");
+            }
+
+            //Переменная, хранящая количество чисел, меньших K
+            less = 0;
+            //Переменная, хранящая количество чисел, делящихся на K нацело
+            div = 0;
+            while (num != 0)
+            {
+                if (num < k)
+                    less++;
+                if (num % k == 0)
+                    div++;
+                num = int.Parse(Console.ReadLine());
+            }
+
         }
     }
 }
