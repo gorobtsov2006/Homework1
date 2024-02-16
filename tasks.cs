@@ -12,6 +12,15 @@ namespace Homework1
             int num = int.Parse(Console.ReadLine());
             Console.WriteLine($"После обнуления разряда десятков: {Zeroing(num)}");
             Console.WriteLine();
+
+            /*Даны координаты поля шахматной доски x, y (целые числа, лежащие в диапазоне 1–8). Учитывая, что  
+           левое нижнее поле доски(1, 1) является черным, вывести, какой цвет имеет поле с данными координатами*/
+            Console.WriteLine("Задание 2");
+            Console.WriteLine("Введите координаты (x, y) поля шахматной доски (от 1 до 8)");
+            int x = int.Parse(Console.ReadLine());
+            int y = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Данное поле имеет {BlackOrWhite(x, y)} цвет");
+            Console.WriteLine();
         }
 
         /** <summary> Обнуление разряда десятков </summary>*/
@@ -22,6 +31,20 @@ namespace Homework1
                 throw new Exception("Число не трёхзначое");
             }
             return a - ((a / 10) % 10) * 10;
+        }
+
+        /** <summary> Определение цвета поля шахматной доски </summary>*/
+        static string BlackOrWhite(int x, int y)
+        {
+            if ((x < 1) || (x > 8) || (y < 1) || (y > 8))
+            {
+                throw new Exception("Координаты не принадлежат заданному диапозону");
+            }
+            //Если сумма значений координат x и y чётная, то поле имеет чёрный цвет, иначе белый
+            if ((x + y) % 2 == 0)
+                return "чёрный";
+            else
+                return "белый";
         }
     }
 }
