@@ -21,6 +21,15 @@ namespace Homework1
             int y = int.Parse(Console.ReadLine());
             Console.WriteLine($"Данное поле имеет {BlackOrWhite(x, y)} цвет");
             Console.WriteLine();
+
+            //Даны числа A, B, C (число A не равно 0).Вернуть количество вещественных корней квадратного уравнения
+            Console.WriteLine("Задание 3");
+            Console.WriteLine("Введите значения коэффицентов квадратного уравнения (Число A не равно 0)");
+            int a = int.Parse(Console.ReadLine());
+            int b = int.Parse(Console.ReadLine());
+            int c = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Количество корней данного уравнения = {CountRoots(a, b, c)}");
+            Console.WriteLine();
         }
 
         /** <summary> Обнуление разряда десятков </summary>*/
@@ -40,11 +49,28 @@ namespace Homework1
             {
                 throw new Exception("Координаты не принадлежат заданному диапозону");
             }
+
             //Если сумма значений координат x и y чётная, то поле имеет чёрный цвет, иначе белый
             if ((x + y) % 2 == 0)
                 return "чёрный";
             else
                 return "белый";
+        }
+
+        /** <summary> Определение количества вещественных корней квадратного уравнения </summary>*/
+        static int CountRoots(double a, double b, double c)
+        {
+            if (a == 0)
+            {
+                throw new ArgumentException("Число A не равно нулю");
+            }
+
+            if (b * b - 4 * a * c > 0)
+                return 2;
+            else if (b * b - 4 * a * c == 0)
+                return 1;
+            else
+                return 0;
         }
     }
 }
