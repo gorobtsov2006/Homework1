@@ -38,6 +38,14 @@ namespace Homework1
             double num2 = double.Parse(Console.ReadLine());
             Console.WriteLine($"Минимум из этих двух чисел = {Min(num1, num2)}");
             Console.WriteLine();
+
+            //Даны целые числа A и B. Найти произведение всех чётных целых чисел от A до B включительно
+            Console.WriteLine("Задание 5");
+            Console.WriteLine("Введите целые числа A и B (A < B)");
+            int first = int.Parse(Console.ReadLine());
+            int second = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Произведение всех чётных целых чисел от A до B включительно = {ProductEven(first, second)}");
+            Console.WriteLine();
         }
 
         /** <summary> Обнуление разряда десятков </summary>*/
@@ -83,5 +91,23 @@ namespace Homework1
 
         /** <summary> Минимум из двух переданных вещественных чисел </summary>*/
         static double Min(double a, double b) => a < b ? a : b;
+
+        /** <summary> Вычисление произведения всех чётных целых чисел от A до B включительно </summary>*/
+
+        static double ProductEven(int a, int b)
+        {
+            if (a >= b)
+            {
+                throw new ArgumentException("A должно быть меньше B");
+            }
+
+            double prod = 1;
+            //Так как разумнее идти с шагом 2, то необходимо начинать с чётного числа  
+            for (int i = a % 2 == 0 ? a : a + 1; i <= b; i += 2)
+            {
+                prod *= i;
+            }
+            return prod;
+        }
     }
 }
